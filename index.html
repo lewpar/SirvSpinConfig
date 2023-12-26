@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sirv Spin Editor</title>
+
+    <link rel="stylesheet" href="./style/main.css"/>
+</head>
+<body>
+    <div id="sirv-form">
+        <div id="sirv-item">
+            <div>Input Link</div>
+            <input id="link" type="text" />
+        </div>
+        <div id="sirv-item">
+            <div>Autospin</div>
+            <select id="sirv-spin">
+                <option value="once">Once</option>
+                <option value="twice">Twice</option>
+                <option value="infinite" selected>Infinite</option>
+                <option value="off">Off</option>
+            </select>
+        </div>
+        <div id="sirv-item">
+            <div>Spin speed (milliseconds): <span id="sirv-spin-speed"></span></div>
+            <input id="sirv-spin-range" type="range" min="0" max="10000" step="100"/>
+        </div>
+        <div id="sirv-item">
+            <div>Spin Direction</div>
+            <select id="sirv-spin-direction">
+                <option value="clockwise" selected>Clockwise</option>
+                <option value="anticlockwise">Anti-Clockwise</option>
+                <option value="alternate-clockwise">Alternate Clockwise</option>
+                <option value="alternate-anticlockwise">Alternate Anti-Clockwise</option>
+            </select>
+        </div>
+        <div id="sirv-item">
+            <div>Hint Text</div>
+            <input id="sirv-hint-text" value="Drag to spin" />
+        </div>
+        <div id="sirv-item">
+            <div>Output Link</div>
+            <input id="new-link" type="text" readonly />
+        </div>
+    </div>
+    <div id="sirv-preview">
+        <iframe id="new-link-frame">
+
+        </iframe>
+    </div>
+    <script src="./scripts/main.js"></script>
+</body>
+</html>
