@@ -6,14 +6,6 @@ const elementLink = document.querySelector("#link");
 const elementNewLinkFrame = document.querySelector("#new-link-frame");
 const elementHintText = document.querySelector("#sirv-hint-text");
 
-elementHintText.addEventListener("input", (event) => {
-    updateLink();
-});
-
-elementLink.addEventListener("input", (event) => {
-    updateLink();
-});
-
 let spinSpeed = elementRange.value;
 
 elementSpeed.textContent = elementRange.value;
@@ -23,18 +15,23 @@ elementRange.addEventListener("input", (event) => {
   updateLink();
 });
 
-elementSpin.addEventListener("input", (event) => {
-    updateLink();
-});
+elementSpin.addEventListener("input", updateLink);
+elementLink.addEventListener("input", updateLink);
+elementSpinDirection.addEventListener("input", updateLink);
+elementHintText.addEventListener("input", updateLink);
 
-elementSpinDirection.addEventListener("input", (event) => {
-    updateLink();
-});
-
-function updateLink()
+async function updateLink()
 {
     let elementLink = document.querySelector("#link");
+    let link = elementLink.value;
+
     let elementNewLink = document.querySelector('#new-link');
+
+    if(!link)
+    {
+        elementNewLink.value = "";
+        return;
+    }
 
     let newLink = `${elementLink.value}?autospinSpeed=${spinSpeed}`;
 
@@ -53,7 +50,23 @@ function updateLink()
         newLink = `${newLink}&hintText=${hintText}`;
     }
 
+    let result = await testLink(newLink);
+    let elementError = document.querySelector('#sirv-error');
+    elementError.innerText = "";
+
     elementNewLink.value = newLink;
 
+    if(!result)
+    {
+        elementError.innerText = "There is an error with the link.";
+        return;
+    }
+
     elementNewLinkFrame.setAttribute('src', newLink);
+}
+
+async function testLink(link)
+{
+    let result = await fetch(link);
+    return result.ok;
 }

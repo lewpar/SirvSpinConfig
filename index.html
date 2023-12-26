@@ -11,7 +11,7 @@
     <div id="sirv-form">
         <div id="sirv-item">
             <div>Input Link</div>
-            <input id="link" type="text" />
+            <input id="link" type="text" placeholder="https://name.sirv.com/Spins/Teapot/Teapot.spin" />
         </div>
         <div id="sirv-item">
             <div>Autospin</div>
@@ -43,11 +43,12 @@
             <div>Output Link</div>
             <input id="new-link" type="text" readonly />
         </div>
+        <div id="sirv-item">
+            <div id="sirv-error"></div>
+        </div>
     </div>
     <div id="sirv-preview">
-        <iframe id="new-link-frame">
-
-        </iframe>
+        <iframe id="new-link-frame"></iframe>
     </div>
     <script src="./scripts/main.js"></script>
 </body>
